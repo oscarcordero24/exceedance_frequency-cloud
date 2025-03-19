@@ -1,0 +1,145 @@
+# Visual Studio Code
+.vscode/
+.history/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+.pnpm-debug.log
+
+# Logs
+logs
+*.log
+*.log.*
+
+# Dependency directories
+jspm_packages/
+bower_components/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+.envrc
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Compiled source
+dist/
+build/
+lib/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDEs and editors
+.idea/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env/
+venv/
+ENV/
+env/
+.venv/
+.venv/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.ipr
+*.iws
+target/
+build/
+
+# Ruby
+*.gem
+*.rbc
+.bundle/
+vendor/bundle
+log/
+tmp/
+*.log
+*.pid
+*.pid.lock
+
+# PHP
+vendor/
+composer.lock
+
+# C/C++
+*.o
+*.obj
+*.so
+*.exe
+*.dll
+*.out
+*.dSYM/
+*.dmg
+*.app
+*.ipa
+*.pdb
+*.lib
+
+# Go
+bin/
+*.exe
+*.exe~
+*.log
+
+# .NET
+*.exe
+*.dll
+*.pdb
+*.app
+*.appx
+*.appxsym
+*.msix
+*.msixsym
+bin/
+obj/
+
+# Frontend
+dist/
+build/
+*.map
+*.cache
+
+# Custom user ignore files
+*.codekit-cache
+*.sass-cache
+*.stackdump
+*.coveralls.yml
+.cache/
+.tmp/
+.temp/
+.idea/
+.project
+.classpath
+*.class
+*.jar
+*.war
+*.iml
+*.ipr
+*.iws
+target/
+out/
+*.swp
+*.directory
+build/

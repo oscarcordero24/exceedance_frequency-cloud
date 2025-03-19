@@ -1,0 +1,109 @@
+/* Responsive */
+@media (max-width: 1000px) {
+    .container .input-container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .container .input-container::before {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 10px;
+        background-color: var(--background-color-2);
+        top: 0;
+        left: 0;
+    }
+
+    .header {
+        position: relative;
+        display: flex;
+        justify-content: end;
+        background: var(--background-color-2);
+        box-shadow: var(--shadow-box);
+    }
+}
+
+@media (max-width: 540px) {
+    *{
+        font-size: 10px;
+    }
+    
+    .header label {
+        position: relative;
+        grid-area: button;
+        margin: 10px 0px 10px 150px;
+        width: 30px;
+        height: 15px;
+        background: #fff;
+        box-shadow: 0 0 0 2px var(--checkbox-border-color);
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .header label input {
+        appearance: none;
+    }
+    
+    .header label b {
+        position: absolute;
+        inset: 0;
+        background: #fff;
+        border-radius: 8px;
+        transition: 0.5s;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+    
+    .header label input:checked ~ b {
+        background: #2276d6;
+    }
+    
+    .header label span {
+        z-index: 10;
+        position: absolute;
+        background: var(--checkbox-border-color);
+        width: 14px;
+        height: 14px;
+        top: 0.5px;
+        left: 0.5px;
+        border-radius: 50%;
+        transition: 0.5s;
+    }
+    
+    .header label input:checked ~ span {
+        transform: translateX(15px);
+        transition: 0.5s;
+    }
+    
+    .header label h4 {
+        position: absolute;
+        left: 50px;
+        text-wrap: nowrap;
+        color: #fff;    
+        font-size: 0.8em;
+    }
+
+    #gage-info-table thead tr th {
+        font-size: 8px;
+    }
+
+    #mean-table th, td {
+        font-size: 8px;
+    }
+
+    #max-table th, td {
+        font-size: 8px;
+    }
+
+    #min-table th, td {
+        font-size: 8px;
+    }
+
+}

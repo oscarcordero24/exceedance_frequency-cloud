@@ -1,0 +1,54 @@
+
+
+.page-wrap.active {
+    filter: blur(20px);
+    pointer-events: none;
+    user-select: none;
+}
+
+#popup-window {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    border-radius: 15px;
+    gap: 10px;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 600px;
+    height: auto;
+    padding: 30px;
+    box-shadow: 0 5px 30px rgba(0,0,0,0.30);
+    background: white;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+    z-index: 100;
+}
+
+#popup-window img {
+    width: 50px;
+    height: auto;
+}
+
+#popup-window.active {
+    top: 50%;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s;
+}
+
+#popup-window.active::before {
+    content: '';
+}
+
+#popup-button {
+    background: #000;
+    padding: 5px 10px;
+    color: white;
+    font-weight: bold;
+    width: 75px;
+    text-align: center;
+}
+
+

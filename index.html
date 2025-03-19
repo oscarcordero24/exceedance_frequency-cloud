@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>StatMan - Statistic Computation Module</title> <!-- DISTRICT Home Page -->
+        <meta name="Description" content="U.S. Army Corps of Engineers DISTRICT HERE Home Page" />
+        <link rel="stylesheet" href="css/body.css" />
+        <link rel="stylesheet" href="css/breadcrumbs.css" />
+        <link rel="stylesheet" href="css/jumpMenu.css" />
+        <script type="text/javascript" src="js/main.js"></script>
+        <!-- Add sidebar.css IF NOT LOAD SIDEBAR TEMPLATE -->
+        <link rel="stylesheet" href="css/sidebar.css"/>
+        <!-- Add content window style IF NOT LOAD SIDEBAR TEMPLATE -->
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/popup.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <link rel="stylesheet" href="css/loadingCircle.css">
+    </head>
+    <body>
+        <div id="page-container">
+            <header id="header">
+                <!--Header content populated here by JavaScript Tag at end of body -->
+            </header>
+            <div class="page-wrap">
+                <div class="container-fluid">
+                    <div id="breadcrumbs">
+                    </div>
+                    <div class="page-content">
+                        <sidebar id="sidebar">
+                            <!--Side bar content populated here by JavaScript Tag at end of body -->
+                        </sidebar>
+                        <div id="topPane" class="col-md backend-cp-collapsible">
+                            <!-- Page Content Here -->
+                            <div class="box-usace">
+                                <h2 class="box-header-striped">
+                                    <span class="titleLabel title">StatMan - Statistic Computation Module</span>
+                                    <span class="rss"></span>
+                                </h2>
+                                <div class="box-content" style="margin:auto">
+                                    <div class="content">
+
+
+                                        <div id="content-body">
+
+                                
+                                            <div class="header">
+                                                <h1 id="main-title">StatMan - Statistic Computation Module</h1>
+                                                <label>
+                                                    <input type="checkbox">
+                                                    <span></span>
+                                                    <b></b>
+                                                    <h4>Dark Mode</h4>
+                                                </label>
+                                            </div>
+                                            <div class="container">
+                                                <div class="input-container">
+                                                    <div class="inputs">
+                                                        <div class="data-info">
+                                                            <div class="basin">
+                                                                <label>Basin:</label>
+                                                                <select name="basin" id="basinCombobox"></select>
+                                                            </div>
+                                                            <div class="gage">
+                                                                <label>Gage:</label>
+                                                                <select name="gage" id="gageCombobox"></select>
+                                                            </div>
+                                                            <div class="data-type">
+                                                                <label id="is-project">Datum: Stage</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="time-info">
+                                                        <table id="info-table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th colspan="2">Available POR</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Start Time</td>
+                                                                    <td>End Time</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="por-start">03/24/1986</td>
+                                                                    <td class="por-end">06/10/2024</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="select-time">
+                                                        <table id="input-table">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th colspan="2">Select Time Window</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td>Starting Year</td>
+                                                                    <td>Ending Year</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td><input type="date" id="begin-input" value="2018-01-01"></td>
+                                                                    <td><input type="date" id="end-input" value="2020-12-31"></td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                                <div class="input-checkbox">
+                                                    <label>Compute:</label>
+                                                    <label>Ave</label>
+                                                    <input type="checkbox" name="ave" id="average" checked>
+                                                    <label>Max</label>
+                                                    <input type="checkbox" name="max" id="maximum" checked>
+                                                    <label>Min</label>
+                                                    <input type="checkbox" name="min" id="minimum" checked>
+                                                </div>
+                                                <div class="buttons">
+                                                    <button class="html" id="button-html">Compute HTML</button>
+                                                    <button class="csv" id="button-csv">Compute Excel</button>
+                                                </div>
+                                            </div>
+
+                                            <div id="loading-image">
+                                                <div class="loader">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 105.52 80.94"><defs><style>.cls-1{fill:#DE1E2E;}.cls-2{fill:#fff;}</style></defs><title>usace-logo</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-1" width="105.52" height="80.94" rx="10.67" ry="10.67"/><path class="cls-2" d="M95.07,74.83H11A4.9,4.9,0,0,1,6.1,69.94V11A4.9,4.9,0,0,1,11,6.1H95.07A4.9,4.9,0,0,1,100,11v59A4.89,4.89,0,0,1,95.07,74.83ZM11,8.1A2.9,2.9,0,0,0,8.1,11v59A2.9,2.9,0,0,0,11,72.83H95.07A2.9,2.9,0,0,0,98,69.94V11A2.9,2.9,0,0,0,95.07,8.1Z"/><path class="cls-2" d="M84.5,52V26.42l4.12-4.12V16.42H83.69v4.33L80,20.68V16.42c0-.05-4.53,0-4.53,0v4.33H71.81V16.42c0-.06-4.87,0-4.87,0V22.3L71,26.42s.06,12.83.06,12.7-10.92,0-10.94,0,0-5.07,0-5.07l2.77-2.77V24.06c0-.14-4.12.06-4.39,0-.09,0,0,4.25,0,4.25H55.06V24.12H50.6a40.46,40.46,0,0,0,.07,4.12H46.82V24.12H42.49c-.13,0,0,7,0,7l3.11,3.11.07,4.86h-11V26.42l3.92-3.92V16.42H33.71v4.33l-3.78-.07V16.42H25.68s0,4.34,0,4.33-3.45-.07-3.78-.07V16.42s-4.93-.06-4.93,0v6.22l3.78,3.71V52.83s-3.92,3.85-3.92,4,.07,6.42.07,6.42H89V56.48ZM29.19,56.41h-3V45.74h3Zm.07-17.29h-3V28.45h3ZM41.08,53.23h-3V45.67h3ZM60.8,60.66H45.74V50.06s2.89-7.51,7.16-7.57l.13,0,.14-.15.17.17c4.65.38,7.46,7.53,7.46,7.53Zm7.29-7.36h-3V45.74h3Zm11.75,3.11h-3V45.74h3ZM80,37.9H77V27.23h3Z"/></g></g></svg>
+                                                    <span style="--i: 1;"></span>
+                                                    <span style="--i: 2;"></span>
+                                                    <span style="--i: 3;"></span>
+                                                    <span style="--i: 4;"></span>
+                                                    <span style="--i: 5;"></span>
+                                                    <span style="--i: 6;"></span>
+                                                    <span style="--i: 7;"></span>
+                                                    <span style="--i: 8;"></span>
+                                                    <span style="--i: 9;"></span>
+                                                    <span style="--i: 10;"></span>
+                                                    <span style="--i: 11;"></span>
+                                                    <span style="--i: 12;"></span>
+                                                    <span style="--i: 13;"></span>
+                                                    <span style="--i: 14;"></span>
+                                                    <span style="--i: 15;"></span>
+                                                    <span style="--i: 16;"></span>
+                                                    <span style="--i: 17;"></span>
+                                                    <span style="--i: 18;"></span>
+                                                    <span style="--i: 19;"></span>
+                                                    <span style="--i: 20;"></span>
+                                                    <h2 class="text-string">Loading Data...<br><b>If this takes more than 15 seconds, reload the page.</b></h2>
+                                                </div>
+                                            </div>
+
+                                            <div class="datrep-results hidden">
+
+                                                <div class="gage-info-datrep">
+                                                    <table id="gage-info-table-datrep">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="2">Table Title</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Location:</td>
+                                                                <td><p id="location-data">NONE</p></td>
+                                                            </tr>
+                                                            <!-- <tr>
+                                                                <td>Gage:</td>
+                                                                <td><p id="gage-data">NONE</p></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>General information:</td>
+                                                                <td><p id="general-info">NONE</p></td>
+                                                            </tr> -->
+                                                            <tr>
+                                                                <td>Record Available:</td>
+                                                                <td><p id="record-available">NONE</p></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="mean-29-88-label">Mean Stage:</td>
+                                                                <td><p id="mean-elev-info">NONE</p></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td id="extreme-29-88-label">Extreme Stage:</td>
+                                                                <td><p id="extreme-elev-info">NONE</p></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Zero Gage Datum:</td>
+                                                                <td><p id="zero-gage-data">NONE</p></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="intro-text">
+                                                        <h4 class="text">All Values Recorded at 8am. Stage in ft:</h4>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="results hidden">
+
+                                                <div class="gage-info">
+                                                    <table id="gage-info-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="2">Table Title</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Location:</td>
+                                                                <td><p id="result-location-data">NONE</p></td>
+                                                            </tr>
+                                                            <!-- <tr>
+                                                                <td>Gage:</td>
+                                                                <td><p id="gage-data">NONE</p></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>General information:</td>
+                                                                <td><p id="general-info">NONE</p></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Record Available:</td>
+                                                                <td><p id="record-available">NONE</p></td>
+                                                            </tr> -->
+                                                            <tr>
+                                                                <td>Zero Gage Datum:</td>
+                                                                <td><p id="result-zero-gage-data">NONE</p></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="intro-text">
+                                                        <h4 class="text">All Values Recorded at 8am. Stage in ft:</h4>
+                                                    </div>
+                                                </div>
+                                                <div class="selected-por-statistic">
+                                                    <h2>Selected POR Statistics [NONE]</h2>
+                                                </div>
+                                                <div class="first-stats">
+                                                    <h4>The Mean Stage for the POR was: 3.04</h4>
+                                                    <h4>The Highest Stage for the POR was: 14.15 which occured on: 03-20-2020</h4>
+                                                    <h4>The Lowest Stage for the POR was: 1.21 which occured on: 09-04-2020</h4>
+                                                </div>
+                                                <div class="daily-title mean hidden">
+                                                    <h4>Daily Mean Values for Select POR [NONE]</h4>
+                                                </div>
+                                                <div class="mean-data hidden">
+                                                    <table class="data-table" id="mean-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="13">Month</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Day</th>
+                                                                <th>Jan</th>
+                                                                <th>Feb</th>
+                                                                <th>Mar</th>
+                                                                <th>Apr</th>
+                                                                <th>May</th>
+                                                                <th>Jun</th>
+                                                                <th>Jul</th>
+                                                                <th>Aug</th>
+                                                                <th>Sep</th>
+                                                                <th>Oct</th>
+                                                                <th>Nov</th>
+                                                                <th>Dec</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="mean-stats">
+                                                        <div class="stats">
+                                                            <h4>The AVG Mean Stage on this table: 1.77</h4>
+                                                            <h4>The Highest AVG Stage on this table: 7.11 which fell on the day: 03-25</h4>
+                                                            <h4>The Lowest AVG Stage on this table: 0.18 which fell on the day: 10-10</h4>
+                                                        </div>
+                                                        <div class="disclamer">
+                                                            <h4>
+                                                                NOTICE: All data contained herein is preliminary in nature and therefore subject to change. The
+                                                                data is for general information purposes ONLY and SHALL NOT be used in technical
+                                                                applications such as, but not limited to, studies or designs. All critical data should be obtained
+                                                                from and verified by the United States Army Corps of Engineers. The United States
+                                                                Government assumes no liability for the completeness or accuracy of the data contained herein
+                                                                and any use of such data inconsistent with this disclaimer shall be solely at the risk of the user.
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="daily-title max hidden">
+                                                    <h4>Daily Max Values for Select POR [Jan 2018 to Dec 2020]</h4>
+                                                </div>
+                                                <div class="max-data hidden">
+                                                    <table class="data-table" id="max-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="13">Month</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Day</th>
+                                                                <th>Jan</th>
+                                                                <th>Feb</th>
+                                                                <th>Mar</th>
+                                                                <th>Apr</th>
+                                                                <th>May</th>
+                                                                <th>Jun</th>
+                                                                <th>Jul</th>
+                                                                <th>Aug</th>
+                                                                <th>Sep</th>
+                                                                <th>Oct</th>
+                                                                <th>Nov</th>
+                                                                <th>Dec</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="max-stats">
+                                                        <div class="stats">
+                                                            <h4>The MAX Mean Stage on this table: 3.23</h4>
+                                                            <h4>The Highest MAX Stage on this table: 10.28 which fell on the day: 01-11</h4>
+                                                            <h4>The Lowest MAX Stage on this table: 0.30 which fell on the day: 10-18</h4>
+                                                        </div>
+                                                        <div class="disclamer">
+                                                            <h4>
+                                                                NOTICE: All data contained herein is preliminary in nature and therefore subject to change. The
+                                                                data is for general information purposes ONLY and SHALL NOT be used in technical
+                                                                applications such as, but not limited to, studies or designs. All critical data should be obtained
+                                                                from and verified by the United States Army Corps of Engineers. The United States
+                                                                Government assumes no liability for the completeness or accuracy of the data contained herein
+                                                                and any use of such data inconsistent with this disclaimer shall be solely at the risk of the user.
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+    
+                                                <div class="daily-title min hidden">
+                                                    <h4>Daily Min Values for Select POR [Jan 2018 to Dec 2020]</h4>
+                                                </div>
+                                                <div class="min-data hidden">
+                                                    <table class="data-table" id="min-table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="13">Month</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>Day</th>
+                                                                <th>Jan</th>
+                                                                <th>Feb</th>
+                                                                <th>Mar</th>
+                                                                <th>Apr</th>
+                                                                <th>May</th>
+                                                                <th>Jun</th>
+                                                                <th>Jul</th>
+                                                                <th>Aug</th>
+                                                                <th>Sep</th>
+                                                                <th>Oct</th>
+                                                                <th>Nov</th>
+                                                                <th>Dec</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="min-stats">
+                                                        <div class="stats">
+                                                            <h4>The MIN Mean Stage on this table: 0.63</h4>
+                                                            <h4>The Highest MIN Stage on this table: 5.11 which fell on the day: 03-25</h4>
+                                                            <h4>The Lowest MIN Stage on this table: -0.01 which fell on the day: 09-25 09-23 09-27 09-22 09-24 10-14 09-26</h4>
+                                                        </div>
+                                                        <div class="disclamer">
+                                                            <h4>
+                                                                NOTICE: All data contained herein is preliminary in nature and therefore subject to change. The
+                                                                data is for general information purposes ONLY and SHALL NOT be used in technical
+                                                                applications such as, but not limited to, studies or designs. All critical data should be obtained
+                                                                from and verified by the United States Army Corps of Engineers. The United States
+                                                                Government assumes no liability for the completeness or accuracy of the data contained herein
+                                                                and any use of such data inconsistent with this disclaimer shall be solely at the risk of the user.
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <script src="https://cdn.sheetjs.com/xlsx-0.18.2/package/dist/xlsx.full.min.js"></script>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+                                            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+                                            <script type="module" src="js/script.js"></script>
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <div class="box-usace">
+                                <h2 class="box-header-striped">
+                                    <span class="titleLabel title">Additional Content</span>
+                                    <span class="rss"></span>
+                                </h2>
+                                <div class="box-content" style="margin:auto">
+                                    <div class="content"> -->
+                                        <!-- Box Content Here -->
+                                        <!-- <div>
+                                            <h1>More Paragraphs</h1>
+                                            <p>Styled like the district pages with the gray bar/red line on top and the
+                                                text offset.
+                                                Add as many of theses as you need!
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h1>Without the Box Headers!</h1>
+                                <p>Or you can include content without the box-header-striped or box-content fields!</p>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <button id="returnTop" title="Return to Top of Page">Top</button>
+            </div>
+        </div>
+
+        <div id="popup-window">
+            <img src="images/loading4.gif" alt="usace-logo">
+            <h2 id="popup-title">This is the POPUP window Title.</h2>
+            <p id="popup-message">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime delectus quasi alias dolore maiores enim nulla exercitationem quos, minus non?</p>
+            <a href="#" id="popup-button">Close</a>
+        </div>
+
+        <footer id="footer">
+            <!--Footer content populated here by script tag at end of body -->
+        </footer>
+        <script src="js/libraries/jQuery-3.3.6.min.js"></script>
+        <script defer>
+            // When the document has loaded pull in the page header and footer skins
+            $(document).ready(function () {
+                // Change the v= to a different number to force clearing the cached version on the client browser
+                $('#header').load('templates/DISTRICT.header.html?v=1');
+                // $('#sidebar').load('templates/DISTRICT.sidebar.html?v=1');
+                $('#footer').load('templates/DISTRICT.footer.html?v=1');
+            })
+        </script>
+    </body>
+
+</html>
