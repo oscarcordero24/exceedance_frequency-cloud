@@ -21,11 +21,19 @@
     --font-color-1: #FFFFFF;
     --font-color-2: #000;
     --checkbox-border-color: #000;
+    --time-window-color: #afbbff;
+    --result-window-color: #dbe0ff;
 
     --datrep-header-color: rgb(52, 58, 64);
     --datrep-body-color: rgb(248, 249, 250);
     --datrep-body-odd-color: rgb(233, 236, 239);
     --loader-font-color: rgb(51, 51, 51);
+    --error-message: rgb(255, 155, 155);
+
+    --table-header-color: darkblue;
+    --table-body-odd-color: rgb(228, 228, 228);
+    --table-body-even-color: rgb(248, 248, 248);
+    --table-font-color: rgb(0, 0, 0);
 }
 
 .page-content.blur {
@@ -56,11 +64,19 @@
     --font-color-1: #fff;
     --font-color-2: #fff;
     --checkbox-border-color: #fff;
+    --time-window-color: #b3b2b2;
+    --result-window-color: #b3b2b2;
 
     --datrep-header-color: rgb(24, 27, 30);
     --datrep-body-color: rgb(160, 161, 163);
     --datrep-body-odd-color: rgb(107, 108, 109);
     --loader-font-color: rgb(172, 172, 172);
+    --error-message: rgb(255, 50, 50);
+
+    --table-header-color: rgb(0, 0, 0);
+    --table-body-odd-color: rgb(114, 114, 114);
+    --table-body-even-color: rgb(177, 177, 177);
+    --table-font-color: rgb(0, 0, 0);
 }
 
 .header {
@@ -241,64 +257,455 @@
     position: relative;
 }
 
-.container .input-checkbox {
-    margin: 0px 3px;
-    background-color: var(--background-color-3);
+.container .separator.hidden {
+    display: none;
+}
+
+.container .separator {
+    position: relative;
+    background-color: var(--background-color-2);
+    width: 100%;
+    height: 1em;
+}
+
+/* ======= SETTINGS DIV ===========*/
+
+#settings-div.hidden {
+    display: none;
+}
+
+#settings-div {
     display: flex;
-    padding: 2px 10px;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    margin-top: 1em;
+    box-shadow: var(--shadow-box);
+}
+
+/* ======== SET TITLE FONT ==========*/
+#settings-div .input-checkbox h3,
+#settings-div .select-data-plot h3,
+#settings-div .statistic-plot-control h3 {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 1em;
+    color: var(--font-color-2);
+}
+ /* ======== CHECKBOX =========*/
+#settings-div .input-checkbox {
+    background-color: var(--background-color-3);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 1.5em;
     gap: 5px;
     font-weight: bold;
 }
 
-.container .input-checkbox label:nth-child(1) {
-    padding-right: 10px;
+#settings-div .input-checkbox div {
+    display: flex;
+    gap: 1em;
 }
 
-.container .input-checkbox input {
+#settings-div .input-checkbox input {
     cursor: pointer;
 }
 
-.container .input-checkbox input:checked {
+#settings-div .input-checkbox input:checked {
     accent-color: var(--color-active);
 }
 
-.container .buttons {
+/* =============== BUTTONS ===============*/
+#buttons-div {
+    margin-top: 1em;
     position: relative;
-    background-color: var(--background-color-2);
+    background: var(--background-color-2);
+    width: 100%;
+    height: 3em;
     display: flex;
-    justify-content: right;
-    gap: 10px;
-    margin: 0px 3px;
-    padding: 10px;
+    justify-content: end;
+    align-items: center;
+    padding: 0 1em;
     box-shadow: var(--shadow-box);
+    gap: 1em;
 }
 
-.container .buttons #loading-msg {
+#instruction-btn {
     position: absolute;
     left: 1em;
     top: 50%;
     transform: translateY(-50%);
-    color: white;
+    width: 7em;
+    height: 2em;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.5em;
     font-size: 1em;
-    font-weight: bold;
 }
 
-.container .buttons button{
-    border-radius: 5px;
-    border: 1px solid var(--border-color-1);
-    padding: 5px 10px;
+#buttons-div button:hover {
+    font-weight: bold;
+    color: #fff;
+    background: rgb(142, 142, 255);
+    padding-top: 0.2em;
+}
+
+#compute-html-btn,
+#compute-pdf-btn {
+    width: 10em;
+    height: 2em;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 0.5em;
+    font-size: 1em;
+}
+
+/* ============ CHECK BOX ================*/
+input[type="checkbox"] {
     cursor: pointer;
 }
 
-.container .buttons button:hover{
-    background: var(--color-active);
-    color: var(--font-color-1);
+/* ============= SETTINGS ================*/
+.input-checkbox.hidden {
+    display: none;
+}
+
+.input-checkbox {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    padding: 1.5em;
+    margin-top: 0.5em;
+    box-shadow: var(--shadow-box);
+}
+
+.input-checkbox h2 {
+    font-size: 1.2em;
+    color: var(--font-color-2);
+}
+
+/* Data Exclusion */
+.data-exclusion {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.data-exclusion .checkbox {
+    display: flex;
+    gap: 2em;
+}
+
+.data-exclusion .checkbox div {
+    display: flex;
+    gap: 0.5em;
+}
+
+/* Time Window */
+.exclusion-settings.hidden {
+    display: none;
+}
+
+.exclusion-settings {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    width: 100%;
+    background-color: var(--time-window-color);
+    border-radius: 1em;
+    font-weight: bold;
+    color: black;
+}
+
+.exclusion-settings .checkbox {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.exclusion-settings .single-month-day-only {
+    display: flex;
+    gap: 5em;
+}
+
+.exclusion-settings .single-month-day-only .month-day-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.exclusion-settings .single-month-day-only .single-month-day-input.hidden {
+    display: none;
+}
+
+.exclusion-settings .single-month-day-only .single-month-day-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+#single-month-day-txbox {
+    width: 6em;
+    text-align: center;
+}
+
+.exclusion-settings .specific-time-window-only {
+    display: flex;
+    gap: 5em;
+}
+
+.exclusion-settings .specific-time-window-only .specific-time-window-input.hidden {
+    display: none;
+}
+
+.exclusion-settings .specific-time-window-only .specific-time-window-input {
+    display: flex;
+}
+
+.exclusion-settings .specific-time-window-only .specific-time-window-input div {
+    display: flex;
+}
+
+.exclusion-settings .specific-time-window-only .specific-time-window-input div input {
+    width: 6em;
+    margin: 0em 1em 0em 0.5em;
+    text-align: center;
+}
+
+/* ========= EXCEEDANCE SETTINGS =========*/
+.input-checkbox .exceedance-settings {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75em;
+    gap: 1em;
+    border-radius: 1em;
+    background: var(--time-window-color);
+}
+
+.exceedance-settings .exceedance-level,
+.exceedance-settings .exceedance-type {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+}
+
+.exceedance-settings .exceedance-level label,
+.exceedance-settings .exceedance-type label {
     font-weight: bold;
 }
 
-#button-csv {
-    display: None;
+.exceedance-settings .exceedance-level input {
+    width: 3em;
+    text-align: center;
 }
+
+.exceedance-settings .exceedance-type select {
+    width: 6em;
+}
+
+/* ========= RESULT INFO TEXT ============*/
+#results .results-info {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1em;
+    background: var(--result-window-color);
+    gap: 1em;
+    padding: 2em;
+    margin: 2em;
+    font-size: 1.2em;
+}
+
+#results .results-info p {
+    margin: 0;
+    padding: 0;
+}
+
+/* =============== TABLES ================*/
+#by-year-table,
+#magnitude-table {
+    text-align: center;
+}
+
+#by-year-table thead,
+#magnitude-table thead {
+    background: var(--table-header-color);
+    color: white;
+}
+
+#by-year-table thead tr:nth-child(1) th,
+#magnitude-table thead tr:nth-child(1) th {
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+
+#by-year-table thead th,
+#magnitude-table thead th {
+    padding: 0.5em 1em;
+}
+
+#by-year-table tbody tr:nth-child(odd),
+#magnitude-table tbody tr:nth-child(odd) {
+    background: var(--table-body-odd-color);
+}
+
+#by-year-table tbody tr:nth-child(even),
+#magnitude-table tbody tr:nth-child(even) {
+    background: var(--table-body-even-color);
+}
+
+/* =========== SUB-SEPARATOR =============*/
+#settings-div .sub-separator.hidden {
+    display: none;
+}
+
+#settings-div .sub-separator {
+    display: block;
+    width: 98%;
+    height: 3px;
+    background-color: gray;
+}
+
+/* ========= SPACE BETWEEN ================*/
+
+#settings-div .space-between {
+    width: 100%;
+    height: 2em;
+}
+
+/* ========== INSTRUCTIONS ==============*/
+#instructions-div.hidden {
+    display: none;
+}
+
+#instructions-div {
+    margin: 1em 0em;
+    padding: 1em 2em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    font-size: 1em;
+    box-shadow: var(--shadow-box);
+}
+
+#instructions-div .title{
+    font-size: 1.5em;
+    color: var(--font-color-2);
+}
+
+#instructions-div ul li{
+    color: var(--font-color-2);
+    margin-top: 0.5em;
+}
+
+/* ========== ERROR MESSAGE =============*/
+#error-message.hidden {
+    display: none;
+}
+
+#error-message {
+    background-color: var(--error-message);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    box-shadow: var(--shadow-box);
+}
+
+#error-message h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--font-color-2);
+}
+
+/* ============ RESULTS =================*/
+#results.hidden {
+    display: none;
+}
+
+#results {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    box-shadow: var(--shadow-box);
+}
+
+#results .tables {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: row;
+    gap: 14em;
+    justify-content: center;
+    box-shadow: var(--shadow-box);
+}
+
+#main-table,
+#secundary-table {
+    margin: 1em;
+    padding: 1em 1em;
+    text-align: center;
+}
+
+#main-table thead,
+#secundary-table thead {
+    background: var(--background-color-1);
+    color: white;
+}
+
+#main-table th,
+#secundary-table th {
+    padding: 0.5em 1em;
+    text-align: center;
+    font-weight: bold;
+}
+
+#main-table thead tr:nth-child(1) th,
+#secundary-table thead tr:nth-child(1) th {
+    padding: 0.5em 1em;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    border-top-left-radius: 1em;
+    border-top-right-radius: 1em;
+}
+
+#main-table tbody tr:nth-child(odd),
+#secundary-table tbody tr:nth-child(odd) {
+    background-color: var(--table-body-odd-color);
+    color: black;
+}
+
+#main-table tbody tr:nth-child(even),
+#secundary-table tbody tr:nth-child(even) {
+    background-color: var(--table-body-even-color);
+    color: black;
+}
+
+#main-table tbody tr:last-child,
+#secundary-table tbody tr:last-child {
+    border-bottom-right-radius: 1em;
+    border-bottom-left-radius: 1em;
+}
+
+#main-table td,
+#secundary-table td {
+    padding: 0.5em 3em;
+    text-align: center;
+}
+
+#main-table td:nth-child(2),
+#secundary-table td:nth-child(2) {
+    padding: 0.5em 3em;
+    text-align: center;
+}
+
+/* ========== LOADING DATA ==============*/
 
 #loading-image {
     display: none;
@@ -308,6 +715,7 @@
     position: relative;
     display: flex;
     height: 400px;
+    width: 100%;
     margin: 5px;
     padding: 0;
     justify-content: center;
@@ -316,14 +724,14 @@
     box-shadow: 0 5px 30px rgba(0,0,0,0.30);
 }
 
-#loading-image .loader {
+#loading-image.show .loader {
     position: absolute;
     top: 20%;
     padding: 0;
     margin: 0;
 }
 
-#loading-image .loader .text-string {
+#loading-image.show .loader .text-string {
     position: absolute;
     width: 10em;
     top: 140%;
@@ -334,7 +742,7 @@
     color: rgb(239, 19, 19);
 }
 
-#loading-image .loader .text-string b {
+#loading-image.show .loader .text-string b {
     position: absolute;
     width: 30em;
     top: 140%;
@@ -345,471 +753,7 @@
     color: var(--loader-font-color);
 }
 
-#content-body .datrep-results.hidden {
-    display: none;
+/* =========== DYNAMIC CHANGES ============*/
+.invalid-data {
+    border: 2px red solid;
 }
-
-#content-body .datrep-results {
-    display: block;
-    margin: 3px;
-}
-
-/** Results Section **/
-.results {
-    display: flex;
-    flex-direction: column;
-    margin: 3px 3px;
-    gap: 3px;
-}
-
-.results.hidden {
-    display: none;
-}
-
-/* Datrep table Style */
-.datrep-results .gage-info-datrep { 
-    position: relative;
-    background-color: var(--background-color-3);
-    box-shadow: var(--shadow-box);
-}
-
-.datrep-results .gage-info-datrep::before {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 20px;
-    background-color: var(--background-color-2);
-}
-
-.datrep-results #gage-info-table-datrep {
-    padding: 35px 15px 15px 15px;
-}
-
-/* Text Format */
-.datrep-results #gage-info-table-datrep th {
-    font-size: 18px;
-}
-
-/* Content text */
-.datrep-results #gage-info-table-datrep td {
-    font-size: 16px;
-    text-transform: uppercase;
-    align-content: center;
-}
-
-/* Content text - Left column */
-.datrep-results #gage-info-table-datrep tbody tr td:nth-child(1) {
-    display: flex;
-    width: 200px;
-    height: 100%;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: capitalize;
-}
-
-/* Text below table */
-.datrep-results .gage-info-datrep .intro-text h4 {
-    padding: 15px;
-    text-transform: uppercase;
-    color: var(--font-color-2);
-}
-
-/* Gage information for Results */
-.results .gage-info { 
-    position: relative;
-    background-color: var(--background-color-3);
-    box-shadow: var(--shadow-box);
-}
-
-.results .gage-info::before {
-    position: absolute;
-    content: '';
-    width: 100%;
-    height: 20px;
-    background-color: var(--background-color-2);
-}
-
-.results #gage-info-table {
-    padding: 35px 15px 15px 15px;
-}
-
-/* Text Format */
-.results #gage-info-table th {
-    font-size: 18px;
-}
-
-/* Content text */
-.results #gage-info-table td {
-    font-size: 16px;
-    text-transform: uppercase;
-    align-content: center;
-}
-
-/* Content text - Left column */
-.results #gage-info-table tbody tr td:nth-child(1) {
-    display: flex;
-    width: 200px;
-    height: 100%;
-    font-size: 16px;
-    font-weight: bold;
-    text-transform: capitalize;
-}
-
-/* Text below table */
-.results .gage-info .intro-text h4 {
-    padding: 15px;
-    text-transform: uppercase;
-    color: var(--font-color-2);
-}
-
-.results .selected-por-statistic {
-    position: relative;
-    background-color: var(--background-color-3);
-    font-size: 14px;
-    box-shadow: var(--shadow-box);
-}
-
-.results .selected-por-statistic h2{
-    padding: 20px 0px 5px 15px;
-    font-weight: bolder;
-    font-style: italic;
-    color: var(--font-color-2);
-}
-
-.results .selected-por-statistic::before {
-    position: absolute;
-    background-color: var(--background-color-2);
-    content: '';
-    width: 100%;
-    height: 20px;
-}
-
-.results .first-stats {
-    display: flex;
-    flex-direction: column;
-    background-color: var(--background-color-3);
-    padding: 15px;
-    box-shadow: var(--shadow-box);
-}
-
-.results .first-stats h4 {
-    margin: 0px;
-    font-size: 14px;
-    color: var(--font-color-2);
-}
-
-.results .daily-title {
-    background-color: var(--background-color-3);
-    box-shadow: var(--shadow-box);
-}
-
-.results .daily-title {
-    position: relative;
-    background-color: var(--background-color-3);
-    box-shadow: var(--shadow-box);
-}
-
-.results .daily-title::before {
-    position: absolute;
-    background-color: var(--background-color-2);
-    content: '';
-    width: 100%;
-    height: 20px;
-}
-
-.results .daily-title h4 {
-    margin: 30px 15px 15px 15px;
-    color: var(--font-color-2);
-}
-
-/* DatRep Tables */
-.datrep-results .datrep-table {
-    background-color: var(--background-color-3);
-    padding: 15px;
-    box-shadow: var(--shadow-box);
-}
-
-.datrep-results .datrep-table .data-table {
-    width: 100%;
-    margin-top: 20px;
-    border-collapse: collapse;
-}
-
-/* Header Format */
-.datrep-results .datrep-table .data-table thead {
-    background: var(--datrep-header-color);
-    margin: 0;
-}
-
-.datrep-results .datrep-table .data-table th {
-    font-size: 16px;
-    font-weight: bold;
-    color: var(--font-color-1);
-    padding: 5px 0px;
-}
-
-.datrep-results .datrep-table .data-table tbody {
-    background: var(--datrep-body-color);
-    text-align: center;
-}
-
-.datrep-results .datrep-table .data-table tbody td {
-    padding: 5px 0px;
-}
-
-.datrep-results .datrep-table .data-table tbody tr:nth-child(odd) {
-    background: var(--datrep-body-odd-color);
-}
-
-.datrep-results .datrep-table h4 {
-    margin: 0px;
-    font-size: 14px;
-    font-weight: normal;
-    color: var(--font-color-2);
-}
-
-.datrep-results .statistic-title {
-    text-align: center;
-    font-size: 1em;
-    font-weight: bold;
-    padding: 1em 0em;
-    color: var(--font-color-2);
-}
-
-.datrep-results .statistic-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.datrep-results .statistic-table td:first-child {
-    width: 1em;
-    padding: 0 2.2em;
-    font-weight: bold;
-    text-align: center;
-}
-
-.datrep-results .statistic-table tbody {
-    text-align: center;
-    background: var(--datrep-body-color);
-}
-
-.datrep-results .statistic-table tbody td {
-    padding: 5px 0px;
-}
-
-.datrep-results .statistic-table tbody tr:nth-child(odd) {
-    background: var(--datrep-body-odd-color);
-}
-
-/* Separator for Datrep tables */
-.datrep-results .div-separator {
-    margin-top: 50px;
-    width: 100%;
-    height: 6px;
-    border-radius: 3px;
-    background: var(--datrep-header-color);
-}
-
-/* Footer Div for the DatRep Page */
-.datrep-results .footer-div {
-    width: 100%;
-    padding: 0px 25px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "stats disclamer";
-    margin-top: 15px;
-}
-
-.datrep-results .stats-div{
-    grid-area: stats;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-.datrep-results .stats-div h2{
-    font-size: 0.8em;
-    font-weight: bold;
-    color: var(--font-color-2);
-}
-
-.datrep-results .disclamer {
-    grid-area: disclamer;
-    font-size: 0.8em;
-    justify-content: flex-end;
-    color: var(--font-color-2);
-}
-
-/* Mean Table */
-.results .mean-data {
-    background-color: var(--background-color-3);
-    padding: 15px;
-    box-shadow: var(--shadow-box);
-}
-
-.results .mean-data .data-table {
-    width: 100%;
-    border: 1px solid var(--border-color-2);
-}
-
-/* Header Format */
-.results .mean-data .data-table th {
-    font-size: 16px;
-    font-weight: bold;
-    border: 1px solid var(--border-color-2);
-    background: var(--background-color-1);
-    color: var(--font-color-1);
-}
-
-.results .mean-data .data-table td {
-    text-align: center;
-    border: 1px solid var(--border-color-2);
-}
-
-.results .mean-stats .stats h4 {
-    margin: 0px;
-    font-size: 14px;
-    font-weight: normal;
-    color: var(--font-color-2);
-}
-
-.results .mean-stats .disclamer {
-    width: 500px;
-}
-
-.results .mean-stats .disclamer h4 {
-    margin: 0px;
-    font-size: 12px;
-    font-weight: normal;
-    color: var(--font-color-2);
-}
-
-.results .mean-data .data-table tr:nth-last-child(1),
-.results .mean-data .data-table tr:nth-last-child(2),
-.results .mean-data .data-table tr:nth-last-child(3) {
-    font-weight: 800;
-}
-
-/* Max Table */
-.results .max-data {
-    background-color: var(--background-color-3);
-    padding: 15px;
-    box-shadow: var(--shadow-box);
-}
-
-.results .max-data .data-table {
-    width: 100%;
-    border: 1px solid var(--border-color-2);
-}
-
-/* Header Format */
-.results .max-data .data-table th {
-    font-size: 16px;
-    font-weight: bold;
-    border: 1px solid var(--border-color-2);
-    background: var(--background-color-1);
-    color: var(--font-color-1);
-}
-
-.results .max-data .data-table td {
-    text-align: center;
-    border: 1px solid var(--border-color-2);
-}
-
-.results .max-stats .stats h4 {
-    margin: 0px;
-    font-size: 12px;
-    font-size: 14px;
-    font-weight: normal;
-    color: var(--font-color-2);
-}
-
-.results .max-stats .disclamer h4 {
-    margin: 0px;
-    font-size: 12px;
-    font-weight: normal;
-    color: var(--font-color-2);
-}
-
-.results .max-stats .disclamer {
-    width: 500px;
-}
-
-.results .max-data .data-table tr:nth-last-child(1),
-.results .max-data .data-table tr:nth-last-child(2),
-.results .max-data .data-table tr:nth-last-child(3) {
-    font-weight: 800;
-}
-
-/* Min Table */
-.results .min-data {
-    background-color: var(--background-color-3);
-    padding: 15px;
-    box-shadow: var(--shadow-box);
-}
-
-.results .min-data .data-table {
-    width: 100%;
-    border: 1px solid var(--border-color-2);
-}
-
-/* Header Format */
-.results .min-data .data-table th {
-    font-size: 16px;
-    font-weight: bold;
-    border: 1px solid var(--border-color-2);
-    background: var(--background-color-1);
-    color: var(--font-color-1);
-}
-
-.results .min-data .data-table td {
-    text-align: center;
-    border: 1px solid var(--border-color-2);
-}
-
-.results .mean-stats,
-.results .min-stats,
-.results .max-stats {
-    display: flex;
-    padding-top: 10px;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.results .min-stats .stats h4 {
-    margin: 0px;
-    font-size: 14px;
-    font-weight: normal;
-    color: var(--font-color-2);
-}
-
-.results .min-stats .disclamer h4 {
-    margin: 0px;
-    font-size: 12px;
-    font-weight: normal;
-    color: var(--font-color-2);
-}
-
-.results .min-stats .disclamer {
-    width: 500px;
-}
-
-.results .min-data .data-table tr:nth-last-child(1),
-.results .min-data .data-table tr:nth-last-child(2),
-.results .min-data .data-table tr:nth-last-child(3) {
-    font-weight: 800;
-}
-
-/* Hide everything with the checkbox */
-.daily-title.mean.hidden,
-.daily-title.max.hidden,
-.daily-title.min.hidden {
-    display: none;
-}
-
-.mean-data.hidden,
-.max-data.hidden,
-.min-data.hidden {
-    display: none;
-}
-
