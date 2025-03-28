@@ -8,7 +8,7 @@
 							<div class="container-fluid">
 								<div class="site-logo">
 									<a href="/">
-										<img id="usace-logo" alt="USACE Logo" src="logos/usace-logo-color.svg" />
+										<img id="usace-logo" alt="USACE Logo" src="../logos/usace-logo-color.svg" />
 										<script>
 											// Function to set the logo path based on the value of cda
 											function setLogoPath(cda) {
@@ -22,13 +22,13 @@
 										
 												switch (cda) {
 													case 'public':
-														logoPath = 'logos/usace-logo-color.svg';
+														logoPath = '../logos/usace-logo-color.svg';
 														break;
 													case 'internal':
-														logoPath = 'logos/usace-logo-color.svg';
+														logoPath = '../logos/usace-logo-color.svg';
 														break;
 													default:
-														logoPath = 'logos/usace-logo-color.svg';
+														logoPath = '../logos/usace-logo-color.svg';
 												}
 										
 												logoElement.src = logoPath;
