@@ -105,7 +105,7 @@ if (isMaintenance){
         
             let setCategory = "Basins"; 
         
-            //let office = "MVS";
+            let office = officeName;
             //let type = "no idea";
         
             // Get the current date and time, and compute a "look-back" time for historical data
@@ -114,7 +114,7 @@ if (isMaintenance){
         
             let setBaseUrl = null;
             if (cda === "internal") {
-                setBaseUrl = `https://coe-${officeName.toLowerCase()}uwa04${officeName.toLowerCase()}.${officeName.toLowerCase()}.usace.army.mil:8243/${officeName.toLowerCase()}-data/`;
+                setBaseUrl = `https://coe-${office.toLowerCase()}uwa04${office.toLowerCase()}.${office.toLowerCase()}.usace.army.mil:8243/${office.toLowerCase()}-data/`;
             } else if (cda === "public") {
                 setBaseUrl = `https://cwms-data.usace.army.mil/cwms-data/`;
             }
